@@ -1,4 +1,4 @@
-# Dolibarr - Services
+# Dolibarr
 
 For my company, I use [Dolibarr](https://dolibarr.org) to manage my administration.
 
