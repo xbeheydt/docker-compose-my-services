@@ -1,9 +1,8 @@
-# My services server setup
+# 🐳 Docker Compose - My services
 
-TODO : Add description and title too
-TODO : Add color with emoji
+This repository helps to backup my services settings and how to use them.
 
-## Docker Compose Services
+## 🛠️ How to run
 
 **Makefile**
 
