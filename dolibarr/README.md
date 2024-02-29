@@ -18,8 +18,8 @@ make up SERVICES="dolibarr-db dolibarr-web"
 ```
 
 This service also use environment variables with the following template files
-[dolibarr.env.template](dolibarr/dolibarr.env.template) and
-[mariadb.env.template](dolibarr/mariadb.env.template).
+[dolibarr.env.template](./dolibarr.env.template) and
+[mariadb.env.template](./mariadb.env.template).
 
 > You will need to change the file names from `service.env.template` to
 `service.env`.

@@ -1,6 +1,7 @@
 # My services server setup
 
-TODO : Add description
+TODO : Add description and title too
+TODO : Add color with emoji
 
 ## Docker Compose Services
 
