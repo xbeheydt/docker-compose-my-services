@@ -1,0 +1,10 @@
+# Copyright Xavier Beheydt. All rights reserved.
+
+# Informations
+# https://docs.docker.com/compose/compose-file/
+
+name: amd-services
+
+# FIXME: frontend only visible
+networks:
+  frontend:
