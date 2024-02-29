@@ -1,0 +1,41 @@
+# Copyright Xavier Beheydt. All rights reserved.
+
+# Informations
+# https://docs.docker.com/compose/compose-file/
+
+# name: dolibarr # Only in top service
+
+volumes:
+  dolibarr-mariadb-data:
+
+# FIXME: backend private 
+networks:
+  frontend:
+  backend:
+
+services:
+  dolibarr-db:
+    image: mariadb:latest
+    env_file:
+      - dolibarr/mariadb.env
+    volumes:
+      - dolibarr-mariadb-data:/var/lib/mysql
+    networks:
+      - backend
+
+  dolibarr-web:
+    depends_on:
+      - dolibarr-db
+    image: tuxgasy/dolibarr:${DOLI_TAG}
+    env_file:
+      - dolibarr/dolibarr.env
+    ports:
+      - "${DOLI_PORT}:80"
+    links:
+      - dolibarr-db
+    volumes:
+      - "${DOLI_DATA_DOCUMENTS}:/var/www/documents"
+      - "${DOLI_DATA_CUSTOM}:/var/www/html/custom"
+    networks:
+      - frontend
+      - backend
