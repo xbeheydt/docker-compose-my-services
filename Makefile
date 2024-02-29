@@ -40,7 +40,3 @@ restart:  ## Stop all or specific services
 .PHONY: logs
 logs:  ## Logs all or specific services
 	$(COMPOSE_CMD) logs -f ${SERVICES}
-
-
-.PHONY: services
-services:  ## List all services
