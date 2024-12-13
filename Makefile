@@ -12,11 +12,14 @@ COMPOSE_CMD = docker compose \
 				-f docker-compose.yml \
 				-f dolibarr/docker-compose.yml \
 				--env-file dolibarr/dolibarr.env \
-				--env-file dolibarr/mariadb.env
+				--env-file dolibarr/mariadb.env \
+				-f immich/docker-compose.yml \
+				--env-file immich/immich.env
 
 # Here are default services allowed to start by default
 SERVICES ?= \
-	dolibarr-web dolibarr-db
+	dolibarr-web dolibarr-db \
+	immich-server immich-ml immich-postgres immich-redis
 
 test:
 	$(MAKE) --dry-run
