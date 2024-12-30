@@ -8,7 +8,7 @@
 
 volumes:
     immich-postgres-data:
-    model-cache:
+    immich-model-cache:
 
 
 services:
@@ -18,8 +18,10 @@ services:
             file: immich/hwaccel.transcoding.yml
             service: nvenc # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
         volumes:
-            # Do not edit the next line. If you want to change the media storage location on your system, edit the value of IMMICH_UPLOAD_LOCATION in the immich/immich.env file
-            - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
+            # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the immich/immich.env file
+            - ${UPLOAD_LOCATION}:/usr/src/app/upload
+            - ${EXTERNAL_LOCATION_1}:/usr/src/app/external/F/Pictures:ro
+            - ${EXTERNAL_LOCATION_2}:/usr/src/app/external/F/Videos:ro
             - /etc/localtime:/etc/localtime:ro
         env_file:
             - immich/immich.env
@@ -35,7 +37,7 @@ services:
             - frontend
             - backend
 
-    immich-ml:
+    immich-machine-learning:
         # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
         # Example tag: ${IMMICH_VERSION:-release}-cuda
         image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
@@ -44,7 +46,7 @@ services:
             file: immich/hwaccel.ml.yml
             service: cuda # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
         volumes:
-            - model-cache:/cache
+            - immich-model-cache:/cache
         env_file:
             - immich/immich.env
         restart: always
@@ -65,9 +67,9 @@ services:
         container_name: immich-db
         image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
         environment:
-            POSTGRES_PASSWORD: ${IMMICH_DB_PASSWORD}
-            POSTGRES_USER: ${IMMICH_DB_USERNAME}
-            POSTGRES_DB: ${IMMICH_DB_DATABASE_NAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_DB: ${DB_DATABASE_NAME}
             POSTGRES_INITDB_ARGS: '--data-checksums'
         volumes:
             # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
