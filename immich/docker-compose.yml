@@ -22,6 +22,7 @@ services:
             - ${UPLOAD_LOCATION}:/usr/src/app/upload
             - ${EXTERNAL_LOCATION_1}:/usr/src/app/external/F/Pictures:ro
             - ${EXTERNAL_LOCATION_2}:/usr/src/app/external/F/Videos:ro
+            - ${EXTERNAL_LOCATION_3}:/usr/src/app/external/F/H_Dataset:ro
             - /etc/localtime:/etc/localtime:ro
         env_file:
             - immich/immich.env
