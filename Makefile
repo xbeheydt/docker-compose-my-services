@@ -19,7 +19,7 @@ COMPOSE_CMD = docker compose \
 # Here are default services allowed to start by default
 SERVICES ?= \
 	dolibarr-web dolibarr-db \
-	immich-server immich-ml immich-postgres immich-redis
+	immich-server immich-machine-learning immich-postgres immich-redis
 
 test:
 	$(MAKE) --dry-run
