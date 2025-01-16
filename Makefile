@@ -43,3 +43,8 @@ restart:  ## Stop all or specific services
 .PHONY: logs
 logs:  ## Logs all or specific services
 	$(COMPOSE_CMD) logs -f ${SERVICES}
+
+.PHONY: update
+update: stop ## Update services
+	$(COMPOSE_CMD) pull ${SERVICES}
+	$(COMPOSE_CMD) start ${SERVICES}
